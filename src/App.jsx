@@ -1,8 +1,15 @@
+import TaskForm from "./components/TaskForm"
+import TaskControls from "./components/TaskControls"
+import TaskList from "./components/TaskList"
+
 const App = () => {
     return (
-        <>
-          <h1>Welcome to React!</h1>
-        </>
+        <div>
+          <h1 style={{textAlign: 'center'}}>Todo App</h1>
+          <TaskForm />
+          <TaskControls />
+          <TaskList />
+        </div>
     )
 }
 
