@@ -12,6 +12,18 @@ const App = () => {
 
     const [showOnlyIncomplete, setShowOnlyIncomplete] = useState(false)
 
+    const addTask = (title, priority) => {
+        
+        const newTask = {
+            id: Date.now(),
+            title,
+            completed: false,
+            priority
+        }
+        
+        setTasks([...tasks, newTask])
+    }
+
     const sortTasks = () => {
         const sortedTasks = [...tasks].sort((a, b) => {
             return a.priority - b.priority
@@ -23,7 +35,7 @@ const App = () => {
     return (
         <div style={{fontFamily: 'Arial', maxWidth: '800px', margin: 'auto', padding: '20px'}}>
           <h1 style={{textAlign: 'center'}}>Todo App</h1>
-          <TaskForm />
+          <TaskForm addTask={addTask} />
           <TaskControls showOnlyIncomplete={showOnlyIncomplete} setShowOnlyIncomplete={setShowOnlyIncomplete} sortTasks={sortTasks} />
           <TaskList showOnlyIncomplete={showOnlyIncomplete} tasks={tasks} />
         </div>
