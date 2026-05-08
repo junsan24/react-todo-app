@@ -34,6 +34,11 @@ const App = () => {
         setTasks(updatedTasks)
     }
 
+    const removeTask = (id) => {
+        const updatedTasks = tasks.filter(task => task.id !== id)
+        setTasks(updatedTasks)
+    }
+
     const sortTasks = () => {
         const sortedTasks = [...tasks].sort((a, b) => {
             return a.priority - b.priority
@@ -47,7 +52,7 @@ const App = () => {
           <h1 style={{textAlign: 'center'}}>Todo App</h1>
           <TaskForm addTask={addTask} />
           <TaskControls showOnlyIncomplete={showOnlyIncomplete} setShowOnlyIncomplete={setShowOnlyIncomplete} sortTasks={sortTasks} />
-          <TaskList toggleTaskCompletion={toggleTaskCompletion} showOnlyIncomplete={showOnlyIncomplete} tasks={tasks} />
+          <TaskList removeTask={removeTask} toggleTaskCompletion={toggleTaskCompletion} showOnlyIncomplete={showOnlyIncomplete} tasks={tasks} />
         </div>
     )
 }

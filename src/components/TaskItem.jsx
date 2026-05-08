@@ -1,6 +1,6 @@
 import { Trash, Pencil } from 'lucide-react'
 
-const TaskItem = ({ task, toggleTaskCompletion }) => {
+const TaskItem = ({ task, toggleTaskCompletion, removeTask }) => {
     return (
         <div style={{display: 'flex', alignItems: 'center', padding: '10px'}}>
             <input 
@@ -19,7 +19,7 @@ const TaskItem = ({ task, toggleTaskCompletion }) => {
             <button style={{marginLeft: 'auto', backgroundColor: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer'}}>
                 <Pencil size={16} />
             </button>
-            <button style={{marginLeft: '5px', backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer'}}>
+            <button onClick={() => removeTask(task.id)} style={{marginLeft: '5px', backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer'}}>
                 <Trash size={16} />
             </button>
         </div>
