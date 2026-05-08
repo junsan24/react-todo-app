@@ -1,9 +1,15 @@
 import { Trash, Pencil } from 'lucide-react'
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, toggleTaskCompletion }) => {
     return (
         <div style={{display: 'flex', alignItems: 'center', padding: '10px'}}>
-            <input type="checkbox" checked={task.completed} readOnly style={{marginRight: '10px'}} />
+            <input 
+                type="checkbox" 
+                checked={task.completed} 
+                readOnly 
+                style={{marginRight: '10px'}} 
+                onClick={() => toggleTaskCompletion(task.id)}
+            />
             <span style={{textDecoration: task.completed ? 'line-through' : 'none', display: 'flex', alignItems: 'center'}}>
                 {task.title}
                  <span style={{marginLeft: '10px', fontSize: '12px', fontWeight: 'bold', color: 'gray', border: '1px solid gray', padding: '4px 8px', borderRadius: '50%', backgroundColor: '#6f42c1', color: 'white'}}>
