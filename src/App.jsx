@@ -2,14 +2,10 @@ import TaskForm from "./components/TaskForm"
 import TaskControls from "./components/TaskControls"
 import TaskList from "./components/TaskList"
 import { useState } from "react"
+import { getStorageTasks, updateStorageTasks } from "./utils/localstorageUtils"
 
 const App = () => {
-    const [tasks, setTasks] = useState([
-        { id: 1, title: 'Buy Groceries', completed: false, priority: '4' },
-        { id: 2, title: 'Have a walk', completed: true, priority: '2' },
-        { id: 3, title: 'Read a book', completed: false, priority: '1' }
-    ])
-
+    const [tasks, setTasks] = useState(getStorageTasks())   
     const [showOnlyIncomplete, setShowOnlyIncomplete] = useState(false)
 
     const addTask = (title, priority) => {
@@ -22,6 +18,7 @@ const App = () => {
         }
         
         setTasks([...tasks, newTask])
+        updateStorageTasks([...tasks, newTask])
     }
 
     const updateTask = (id, newTitle, newPriority) => {
@@ -32,6 +29,7 @@ const App = () => {
             return task
         })
         setTasks(updatedTasks)
+        updateStorageTasks(updatedTasks)
     }
 
     const toggleTaskCompletion = (id) => {
@@ -42,11 +40,13 @@ const App = () => {
             return task
         })
         setTasks(updatedTasks)
+        updateStorageTasks(updatedTasks)
     }
 
     const removeTask = (id) => {
         const updatedTasks = tasks.filter(task => task.id !== id)
         setTasks(updatedTasks)
+        updateStorageTasks(updatedTasks)
     }
 
     const sortTasks = () => {
@@ -54,6 +54,7 @@ const App = () => {
             return a.priority - b.priority
         })
         setTasks(sortedTasks)
+        updateStorageTasks(sortedTasks)
     }
 
     return (
