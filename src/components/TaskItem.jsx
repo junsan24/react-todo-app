@@ -1,6 +1,6 @@
 import { Trash, Pencil } from 'lucide-react'
 
-const TaskItem = ({ task, toggleTaskCompletion, removeTask }) => {
+const TaskItem = ({ task, toggleTaskCompletion, removeTask, setEditingTaskId }) => {
     return (
         <div style={{display: 'flex', alignItems: 'center', padding: '10px'}}>
             <input 
@@ -16,7 +16,7 @@ const TaskItem = ({ task, toggleTaskCompletion, removeTask }) => {
                     {task.priority}
                 </span>
             </span>
-            <button style={{marginLeft: 'auto', backgroundColor: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer'}}>
+            <button style={{marginLeft: 'auto', backgroundColor: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer'}} onClick={() => setEditingTaskId(task.id)}>
                 <Pencil size={16} />
             </button>
             <button onClick={() => removeTask(task.id)} style={{marginLeft: '5px', backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer'}}>

@@ -24,6 +24,16 @@ const App = () => {
         setTasks([...tasks, newTask])
     }
 
+    const updateTask = (id, newTitle, newPriority) => {
+        const updatedTasks = tasks.map(task => {
+            if (task.id === id) {
+                return { ...task, title: newTitle, priority: newPriority }
+            }
+            return task
+        })
+        setTasks(updatedTasks)
+    }
+
     const toggleTaskCompletion = (id) => {
         const updatedTasks = tasks.map(task => {
             if (task.id === id) {
@@ -46,13 +56,12 @@ const App = () => {
         setTasks(sortedTasks)
     }
 
-
     return (
         <div style={{fontFamily: 'Arial', maxWidth: '800px', margin: 'auto', padding: '20px'}}>
           <h1 style={{textAlign: 'center'}}>Todo App</h1>
           <TaskForm addTask={addTask} />
           <TaskControls showOnlyIncomplete={showOnlyIncomplete} setShowOnlyIncomplete={setShowOnlyIncomplete} sortTasks={sortTasks} />
-          <TaskList removeTask={removeTask} toggleTaskCompletion={toggleTaskCompletion} showOnlyIncomplete={showOnlyIncomplete} tasks={tasks} />
+          <TaskList updateTask={updateTask} removeTask={removeTask} toggleTaskCompletion={toggleTaskCompletion} showOnlyIncomplete={showOnlyIncomplete} tasks={tasks} />
         </div>
     )
 }
